@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/images"
+public_folder: "/images"
+
+collections:
+  - name: "posts"
+    label: "Post"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Immagine", name: "image", widget: "image", required: false }
+      - { label: "Autore", name: "author", widget: "list", default: ["Admin"] }
+      - { label: "Categorie", name: "categories", widget: "list", required: false }
+      - { label: "Tag", name: "tags", widget: "list", required: false }
+      - { label: "Meta Description", name: "description", widget: "text", required: false }
+      - { label: "Bozza", name: "draft", widget: "boolean", default: false }
+      - { label: "Contenuto", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pagine"
+    folder: "content"
+    create: false
+    filter:
+      field: "title"
+      value: "About"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Meta Description", name: "description", widget: "text", required: false }
+      - { label: "Bozza", name: "draft", widget: "boolean", default: false }
+      - { label: "Contenuto", name: "body", widget: "markdown" }
